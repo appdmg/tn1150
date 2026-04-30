@@ -14,8 +14,6 @@
  *
  */
 
-var unorm = require('unorm')
-
 var lowerCaseMap = new Map([
   [0x0000, 0xffff],
   [0x0041, 0x0061],
@@ -376,4 +374,8 @@ function HFSPlusFastUnicodeCompare (str1, str2) {
 }
 
 exports.compare = HFSPlusFastUnicodeCompare
-exports.normalize = unorm.nfd
+exports.normalize = normalize
+
+function normalize (text) {
+  return text.normalize('NFD')
+}

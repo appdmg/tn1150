@@ -1,0 +1,28 @@
+name: build
+
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    name: build node v24 ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v6
+
+      - name: setup node 24
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: npm ci
+        run: npm ci
+
+      - name: npm test
+        run: npm test
